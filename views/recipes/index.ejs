@@ -1,0 +1,42 @@
+<%- include('../partials/userheader') %>
+<br><br>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Recipe</th>
+                <th>Cuisine Type</th>
+                <th>Ingredients</th>
+                <th>Instructions</th>
+                <th>Difficulty</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Write the line of EJS to iterate over movies using forEach -->
+            <% recipes.forEach(r => { %>
+                <tr>
+                    <td>
+                        <%= r.name %>
+                    </td>
+                    <td>
+                        <%= r.cuisineType %>
+                    </td>
+                    <td>
+                        <%= r.ingredients %>
+                    </td>
+                    <td>
+                        <%= r.instructions %>
+                    </td>
+                    <td>
+                        <%= r.difficulty %>
+                    </td>
+                    <td>
+                        <a href="/recipes/<%=r.id%>">Full Recipe</a></td>
+                    </td>
+                </tr>
+                <!-- Close the forEach using EJS here -->
+                <% }) %>
+        </tbody>
+    </table>
+</body>

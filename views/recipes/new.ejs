@@ -1,0 +1,29 @@
+<%- include('../partials/userheader') %>
+<br><br>
+<form id="new-form" action="/recipes" method="POST">
+    <label>Recipe Name</label>
+    <br>
+    <input type="text" name="name">
+    <br><br>
+    <label>Cuisine Type</label>
+    <br>
+    <input type="text" name="cuisineType">
+    <br><br>
+    <label>Ingredients <small>(separate by comma)</small></label>
+    <br>
+    <input type="text" name="ingredients" placeholder="i.e: zucchi, carrot">
+    <br><br>
+    <label>Instructions</label>
+    <br>
+    <textarea type="text" name="instructions"></textarea>
+    <br><br>
+    <label>Difficulty</label>
+    <br>
+    <select name="difficulty">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate (homecook)</option>
+        <option value="professional">Professional</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Add Recipe">
+  </form>

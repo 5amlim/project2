@@ -21,7 +21,6 @@ Users can create, edit, delete their recipes.
 
 #### Create Recipe Page (User View)
 
-Create recipe user interface.
 ![create recipe page](/public/stylesheets/images/createrecipe.png)
 <br>
 
