@@ -7,12 +7,11 @@ module.exports = {
 
 function create(req, res) {
     Recipe.findById(req.params.id, function(err, recipe){
-        console.log(recipe)
+        console.log('👾', req.body.user)
         req.body.user = req.user._id
         req.body.name = req.user.name
         req.body.avatar = req.user.avatar
         recipe.ratings.push(req.body);
-        recipe.user = req.body.user
         recipe.save(function(err) {
             res.redirect(`/recipes/${recipe._id}`)
         })
