@@ -43,14 +43,15 @@ function newRecipe(req, res) {
 }
 
 function show(req, res) {
-    Recipe.findById(req.params.id, function (err, recipe) {
+    Recipe.findById(req.params.recipeId, function (err, recipe) {
+        console.log('🐝', req.params.recipeId)
     res.render("recipes/show", {title:'Full Recipe', recipe});
     });
 }
 
 function viewAll(req, res) {
-    console.log('😈', req.params.id)
-        Recipe.find({user:req.params.id}, function (err, recipe) {
+    console.log('😈', req.params.userId)
+        Recipe.find({user:req.params.userId}, function (err, recipe) {
             console.log('🎃', recipe)
     res.render("recipes/userRecipe", {title:'My Recipes', recipe
     });
@@ -68,12 +69,14 @@ function deleteRecipe(req, res, next){
         }
         console.log('👹', req.params.id)
         recipe.remove(req.params.id)
-        recipe.save()
+        // recipe.save()
     })
     .then(function(recipe){
-        console.log('😡', recipe)
+        if(!recipe){
+        console.log('😡', recipe),
         res.redirect(`/recipes/${req.user._id}/all`)
-    })
+    }
+})
     .catch(function (err) {
         return next(err);
       });

@@ -5,9 +5,10 @@ module.exports = {
     delete: deleteRating,
 }
 
+//! recipeId
 function create(req, res) {
     Recipe.findById(req.params.id, function(err, recipe){
-        console.log('👾', req.body.user)
+        console.log('👾', req.params.id)
         req.body.user = req.user._id
         req.body.name = req.user.name
         req.body.avatar = req.user.avatar
@@ -18,6 +19,7 @@ function create(req, res) {
     })
 }
 
+//! ratingId
 function deleteRating(req, res, next){
     Recipe.findOne({
         "ratings._id": req.params.id,

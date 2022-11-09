@@ -7,8 +7,8 @@ const recipesCtrl = require('../controllers/recipes')
 router.get('/', recipesCtrl.index);
 router.get('/new', recipesCtrl.new);
 router.post('/', isLoggedIn, recipesCtrl.create);
-router.get('/:id', recipesCtrl.show);
-router.get('/:id/all', isLoggedIn, recipesCtrl.viewAll);
+router.get('/:recipeId', recipesCtrl.show);
+router.get('/:userId/all', isLoggedIn, recipesCtrl.viewAll);
 router.delete('/:id', isLoggedIn, recipesCtrl.delete);
 
 module.exports = router;
