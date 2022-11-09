@@ -13,7 +13,6 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Write the line of EJS to iterate over movies using forEach -->
             <% recipes.forEach(r => { %>
                 <tr>
                     <td>
@@ -35,7 +34,6 @@
                         <a href="/recipes/<%=r.id%>">Full Recipe</a></td>
                     </td>
                 </tr>
-                <!-- Close the forEach using EJS here -->
                 <% }) %>
         </tbody>
     </table>

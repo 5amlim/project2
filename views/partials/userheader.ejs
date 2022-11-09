@@ -17,11 +17,14 @@
             <a class="nav-link" href="/recipes">Discover<span class="sr-only"> Recipes</span></a>
           </li>
           <% if (user) { %>
-            <li class="nav-item active">
-              <a class="nav-link" href="/private">Private Page</a>
-            </li>
+            <!-- <li class="nav-item active">
+              <a class="nav-link" href="/recipes//all">My Recipes</a>
+            </li> -->
             <li class="nav-item active ">
               <a class="nav-link" href="/recipes/new">Create Recipe</a>
+            </li>
+            <li class="nav-item active ">
+              <a class="nav-link" href="/recipes/<%= user._id%>/all">View My Recipes</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="/logout">Log Out</a>

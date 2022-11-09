@@ -10,6 +10,7 @@ const userSchema = new Schema(
     },
     email: String,
     avatar: String,
+    recipes: [{ type: Schema.Types.ObjectId, ref: "Recipe"}],
   },
   { timeStamps: true }
 );
