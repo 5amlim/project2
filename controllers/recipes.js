@@ -8,6 +8,8 @@ module.exports = {
     show,
     viewAll,
     delete: deleteRecipe,
+    edit,
+    // update
 }
 
 function index(req, res) {
@@ -81,3 +83,16 @@ function deleteRecipe(req, res, next){
         return next(err);
       });
 }
+
+function edit(req, res) {
+    Recipe.findById(req.params.recipeId, function (err, recipe) {
+        console.log('🐝', req.params.recipeId)
+    res.render("recipes/edit", {title:'Edit Recipe', recipe});
+    });
+}
+
+// function update(req, res) {
+//     Recipe.updateOne(req.params.recipeId, req.body)
+    
+//     res.redirect(`/recipes/${req.params.recipeId}`, {title: 'Edit Recipe'})
+// }
