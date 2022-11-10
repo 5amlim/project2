@@ -1,34 +1,53 @@
 <%- include('../partials/userheader') %>
 <br><br>
 
-<body>
-    <h2 class="recipe-name"><%= recipe.name %> <small>(<%= recipe.cuisineType %>)</small></h2>
-    <br><br>
-    <h5>Difficulty:</h5>
-    <p><%= recipe.difficulty %></p>
-    <h5>Ingredients:</h5>
-    <p><%= recipe.ingredients %></p>
-    <h5>Instructions:</h5>
-    <p><%= recipe.instructions %></p>
-    <a href="/recipes/<%=recipe.id%>/edit">Edit Recipe</a>
-</body>
-
+<div class="col-12 card" style=width: 18rem>
+  <h3 class="recipe-name card-header text-center"><b><%= recipe.name  %></b> <small class="card-subtitle mb-2 text-muted" >(<%= recipe.cuisineType %>)</small></h3>
+    <div class="card-body">
+      <h6 class="card-title"><b>Difficulty:</b></h6>
+      <p class="card-text"><%= recipe.difficulty %></p>
+      <h6 class="card-title"><b>Ingredients:</b></h6>
+      <p class="card-text"><%= recipe.ingredients %></p>
+      <h6 class="card-title"><b>Instructions:</b></h6>
+      <p class="card-text"><%= recipe.instructions %></p>
+      
+      <div class="container text-center">
+        <div class="row justify-content-center">
+            
+          <% if (user && user._id.equals(recipe.user)) { %>
+            
+            <div class="col-2">
+              <form action="/recipes/<%=recipe.id%>/edit">
+                <button class="btn btn-outline-primary" type="submit">Edit Recipe</button>
+              </form>
+            </div>
+          </div>
+            <% } %>
+        </div>
+      </div>
+    </div>
+</div>
 <br><br>
-<h5>Ratings</h5>
+
+<h5>Loved it? Leave a rating:</h5>
 <% if (user) { %>
     <form id="add-rating-form" method="POST" action="/recipes/<%= recipe._id %>/ratings">
+      <label>Rating:</label>
+      <br>
+      <select name="rating">
+          <option value="none" selected disabled hidden>Select a Rating</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+      </select>
+      <br><br>
     <label>Comment</label>
+    <br>
     <textarea name="content"></textarea>
-    <label>Rating:</label>
-    <select name="rating">
-        <option value="none" selected disabled hidden>Select a Rating</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
-    <input type="submit" value="Add Rating">
+    <br><br>
+    <button class="btn btn-secondary btn-sm" type="submit">Add Rating</button>
     </form>
 <% } else { %>
     <h5><a href="/auth/google">Log In</a> to rate</h4>
@@ -55,7 +74,10 @@
             <td>  
                 <% if (user && user._id.equals(r.user)) { %>
                 <form action="/ratings/<%= r.id %>?_method=DELETE" method="POST">
-                    <button type="submit">X</button>
+                  <button class="btn btn-danger" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                  </svg></button>
                 </form>
                 <% } %>
             </td>  

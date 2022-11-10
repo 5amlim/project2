@@ -18,17 +18,10 @@ function index(req, res) {
     })
 }
 
-
 function create(req, res) {
     const recipe = new Recipe(req.body);
     const userId = res.locals.user._id
     console.log('😀', recipe.name)
-    // User.findById(userId, function(err, user, next){
-    //     console.log('🥳', user)
-    //     user.recipes.push(recipe)
-    //     user.save(function(err) {
-    //         if(err) return res.redirect ('/recipes/new')
-    //         console.log(user)
     recipe.user = userId
     recipe.save(function(err) {
         if(err) return res.redirect ('/recipes/new');
@@ -36,9 +29,6 @@ function create(req, res) {
         res.redirect(`/recipes/${recipe._id}`)
     })
 }
-//         )
-//     })
-// }
 
 function newRecipe(req, res) {
     res.render("recipes/new", {title:'Add Recipe'});
@@ -71,7 +61,6 @@ function deleteRecipe(req, res, next){
         }
         console.log('👹', req.params.id)
         recipe.remove(req.params.id)
-        // recipe.save()
     })
     .then(function(recipe){
         if(!recipe){

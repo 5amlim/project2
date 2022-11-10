@@ -1,40 +1,29 @@
 <%- include('../partials/userheader') %>
-<br><br>
-<body>
-    <table>
-        <thead>
-            <tr>
-                <th>Recipe</th>
-                <th>Cuisine Type</th>
-                <th>Ingredients</th>
-                <th>Instructions</th>
-                <th>Difficulty</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% recipes.forEach(r => { %>
-                <tr>
-                    <td>
-                        <%= r.name %>
-                    </td>
-                    <td>
-                        <%= r.cuisineType %>
-                    </td>
-                    <td>
-                        <%= r.ingredients %>
-                    </td>
-                    <td>
-                        <%= r.instructions %>
-                    </td>
-                    <td>
-                        <%= r.difficulty %>
-                    </td>
-                    <td>
-                        <a href="/recipes/<%=r.id%>">Full Recipe</a></td>
-                    </td>
-                </tr>
-                <% }) %>
-        </tbody>
-    </table>
-</body>
+<br>
+<h1>Discover Recipes</h1>
+<br>
+<% recipes.forEach(function(r) { %>
+    <div class="col-12 card" style=width: 18rem>
+      <h3 class="recipe-name card-header text-center"><b><%= r.name %></b> <small class="card-subtitle mb-2 text-muted" >(<%= r.cuisineType %>)</small></h3>
+
+
+        
+        <div class="d-flex flex-row-reverse">
+          <form action="/recipes/<%= r.id %>" method="GET">
+            <button class="me-2 mt-2 btn btn-outline-primary btn-sm" type="submit">View Details</button>
+          </form>
+        </div>
+
+
+          <div class="card-body">
+            <h6 class="card-title"><b>Difficulty:</b></h6>
+            <p class="card-text"><%= r.difficulty %></p>
+            <h6 class="card-title"><b>Ingredients:</b></h6>
+            <p class="card-text"><%= r.ingredients %></p>
+            <h6 class="card-title"><b>Instructions:</b></h6>
+            <p class="card-text"><%= r.instructions %></p>
+           </div>
+
+      </div>
+      <br><br>
+    <% }) %>
