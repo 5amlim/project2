@@ -9,7 +9,7 @@ module.exports = {
     viewAll,
     delete: deleteRecipe,
     edit,
-    // update
+    update
 }
 
 function index(req, res) {
@@ -91,8 +91,29 @@ function edit(req, res) {
     });
 }
 
-// function update(req, res) {
-//     Recipe.updateOne(req.params.recipeId, req.body)
-    
-//     res.redirect(`/recipes/${req.params.recipeId}`, {title: 'Edit Recipe'})
-// }
+function update(req, res, next) {
+    Recipe.findOne({
+        "_id": req.params.recipeId
+    })
+    .then (function(recipe){
+        console.log('🪲', req.params.recipeId)
+        console.log('🪲', recipe)
+        console.log('🪲', req.body.name)
+        recipe.name = req.body.name
+        recipe.cuisineType = req.body.cuisineType
+        recipe.user = req.body.user
+        recipe.ingredients = req.body.ingredients
+        recipe.instructions = req.body.instructions
+        recipe.difficulty = req.body.difficulty
+        recipe.user = req.user.id
+        console.log('🪲', req.user.id)
+        recipe.save()
+    })
+    .then (function(err, recipe){
+        res.redirect(`/recipes/${req.params.recipeId}`)
+    })
+    .catch (function(err){
+        return next(err)
+    })
+}
+
