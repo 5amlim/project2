@@ -1,6 +1,6 @@
 <%- include('../partials/userheader') %>
 <br>
-<h1>View My Recipes</h1>
+<h1><%=user.name%>'s Creations</h1>
 <br>
 
 
@@ -29,12 +29,12 @@
 
 
               <div class="card-body">
-                <h6 class="card-title"><b>Difficulty:</b></h6>
-                <p class="card-text"><%= r.difficulty %></p>
+                <h6 class="card-title text-break"><b>Difficulty:</b></h6>
+                <p class="card-text text-break"><%= r.difficulty %></p>
                 <h6 class="card-title"><b>Ingredients:</b></h6>
-                <p class="card-text"><%= r.ingredients %></p>
+                <p class="card-text text-break"><%= r.ingredients %></p>
                 <h6 class="card-title"><b>Instructions:</b></h6>
-                <p class="card-text"><%= r.instructions %></p>
+                <p class="card-text text-break"><%= r.instructions %></p>
                </div>
                 <% } %>
           </div>

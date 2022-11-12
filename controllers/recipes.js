@@ -23,6 +23,7 @@ function create(req, res) {
     const userId = res.locals.user._id
     console.log('😀', recipe.name)
     recipe.user = userId
+    recipe.userName = req.user.name
     recipe.save(function(err) {
         if(err) return res.redirect ('/recipes/new');
         console.log(recipe._id)
@@ -95,6 +96,7 @@ function update(req, res, next) {
         recipe.instructions = req.body.instructions
         recipe.difficulty = req.body.difficulty
         recipe.user = req.user.id
+        recipe.userName = req.user.name
         console.log('🪲', req.user.id)
         recipe.save()
     })

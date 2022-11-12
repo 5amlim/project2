@@ -1,29 +1,32 @@
 <%- include('../partials/userheader') %>
-<br><br>
+<br>
+<h1>Create Your Own Recipe</h1>
+<br>
 <form id="new-form" action="/recipes" method="POST">
-    <label>Recipe Name</label>
+    <label><b>Recipe Name</b></label>
     <br>
-    <input type="text" name="name">
+    <input class="form-control" type="text" name="name">
     <br><br>
-    <label>Cuisine Type</label>
+    <label><b>Cuisine Type</b></label>
     <br>
-    <input type="text" name="cuisineType">
+    <input class="form-control" type="text" name="cuisineType">
     <br><br>
-    <label>Ingredients <small>(separate by comma)</small></label>
+    <label><b>Ingredients</b><small> (separate by comma)</small></label>
     <br>
-    <input type="text" name="ingredients" placeholder="i.e: zucchini, carrot">
+    <input class="form-control" type="text" name="ingredients" placeholder="i.e: zucchini, carrot">
     <br><br>
-    <label>Instructions</label>
+    <label><b>Instructions</b></label>
     <br>
-    <textarea type="text" name="instructions"></textarea>
+    <textarea class="form-control" type="text" name="instructions"></textarea>
     <br><br>
-    <label>Difficulty</label>
+    <label><b>Difficulty</b></label>
     <br>
-    <select name="difficulty">
+    <select class="form-control form-control-sm" name="difficulty" required>
+        <option selected disabled value="">Select One</option>
         <option value="beginner">Beginner</option>
         <option value="intermediate">Intermediate (homecook)</option>
         <option value="professional">Professional</option>
     </select>
     <br><br>
-    <input type="submit" value="Add Recipe">
+    <button class="me-2 mt-2 btn btn-outline-primary btn-sm" type="submit">+ Add Recipe</button>
   </form>

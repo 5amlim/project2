@@ -10,8 +10,8 @@ const ratingSchema = new Schema(
       content: { type: String, required: true },
       rating: { type: Number, min: 1, max: 5, default: 5 },
       user: { type: Schema.Types.ObjectId, ref: "User", required: true },
-      userName: String,
-      userAvatar: String,
+      name: String,
+      avatar: String,
     },
     {
       timestamps: true,
@@ -22,7 +22,7 @@ const recipeSchema = new Schema(
     {
         name: String,
         cuisineType: String,
-        time: Number,
+        userName: String,
         user: {type: Schema.Types.ObjectId, ref: 'User'},
         ingredients: String,
         instructions: String,
@@ -48,3 +48,4 @@ const recipeSchema = new Schema(
 // }
 
 module.exports = mongoose.model("Recipe", recipeSchema);
+

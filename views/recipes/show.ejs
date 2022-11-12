@@ -4,12 +4,12 @@
 <div class="col-12 card" style=width: 18rem>
   <h3 class="recipe-name card-header text-center"><b><%= recipe.name  %></b> <small class="card-subtitle mb-2 text-muted" >(<%= recipe.cuisineType %>)</small></h3>
     <div class="card-body">
-      <h6 class="card-title"><b>Difficulty:</b></h6>
-      <p class="card-text"><%= recipe.difficulty %></p>
-      <h6 class="card-title"><b>Ingredients:</b></h6>
-      <p class="card-text"><%= recipe.ingredients %></p>
-      <h6 class="card-title"><b>Instructions:</b></h6>
-      <p class="card-text"><%= recipe.instructions %></p>
+      <h6 class="card-title text-break"><b>Difficulty:</b></h6>
+      <p class="card-text text-break"><%= recipe.difficulty %></p>
+      <h6 class="card-title text-break"><b>Ingredients:</b></h6>
+      <p class="card-text text-break"><%= recipe.ingredients %></p>
+      <h6 class="card-title text-break"><b>Instructions:</b></h6>
+      <p class="card-text text-break"><%= recipe.instructions %></p>
       
       <div class="container text-center">
         <div class="row justify-content-center">
@@ -18,23 +18,35 @@
             
             <div class="col-2">
               <form action="/recipes/<%=recipe.id%>/edit">
-                <button class="btn btn-outline-primary" type="submit">Edit Recipe</button>
+                <button class="btn btn-outline-primary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
+                  <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z"/>
+                  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+                </svg> Edit Recipe</button>
               </form>
             </div>
+            <div class="col-2">
+            <form action="/recipes/<%= recipe.id %>?_method=DELETE" method="POST">
+              <button class="btn btn-outline-danger" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg> Delete</button> 
+            </form>
+          </div>
           </div>
             <% } %>
         </div>
       </div>
     </div>
 </div>
-<br><br>
+<caption>Recipe by: <%=recipe.userName%></caption>
+<br><br><br>
 
 <h5>Loved it? Leave a rating:</h5>
 <% if (user) { %>
     <form id="add-rating-form" method="POST" action="/recipes/<%= recipe._id %>/ratings">
       <label>Rating:</label>
       <br>
-      <select name="rating">
+      <select class="form-control form-control-sm" name="rating">
           <option value="none" selected disabled hidden>Select a Rating</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -42,11 +54,11 @@
           <option value="4">4</option>
           <option value="5">5</option>
       </select>
-      <br><br>
+      <br>
     <label>Comment</label>
     <br>
-    <textarea name="content"></textarea>
-    <br><br>
+    <textarea class="form-control" name="content"></textarea>
+    <br>
     <button class="btn btn-secondary btn-sm" type="submit">Add Rating</button>
     </form>
 <% } else { %>
@@ -57,13 +69,13 @@
 
 <h5>See what others are saying about this recipe:</h5>
 <% if (recipe.ratings.length) { %>
-    <table>
+    <table class="table table-sm">
       <thead>
         <tr>
-            <th></th>
-            <th>Date</th>
-            <th>Review</th>
-            <th>Rating</th>
+          <th scope="col">User</th>
+          <th class="text-center" scope="col">Rating</th>
+          <th scope="col">Review</th>
+          <th scope="col">Date</th>
         </tr>
       </thead>
       <tbody>
@@ -71,25 +83,26 @@
         <% recipe.ratings.forEach(function(r) { %>
           <% total += r.rating %>
           <tr>
-            <td>  
+            <th class="text-wrap" style="width: 1rem;" scope="row">  
                 <% if (user && user._id.equals(r.user)) { %>
                 <form action="/ratings/<%= r.id %>?_method=DELETE" method="POST">
-                  <button class="btn btn-danger" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                  <button class="btn btn-outline-danger deletebtn" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                     <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                   </svg></button>
                 </form>
-                <% } %>
-            </td>  
-            <td><%= r.createdAt.toLocaleDateString() %></td>
-            <td><%= r.content %></td>
-            <td><%= r.rating %></td>
+                <% } else { %>
+                  <%= r.name %>
+                  <% } %>
+            </th>  
+            <td class="text-wrap align-middle text-center text-break" ><%= r.rating %>/5</td>
+            <td class="text-wrap align-middle text-break"><%= r.content %></td>
+            <td class="text-wrap align-middle text-break"><%= r.createdAt.toLocaleDateString() %></td>
           </tr>
         <% }); %>
         <tr>
 
-          <td colspan="3"></td>
-          <td><strong><%= (total / recipe.ratings.length).toFixed(1) %></strong></td>
+          <caption><strong>Average: <%= (total / recipe.ratings.length).toFixed(1) %></strong>/5.0</caption>
         </tr>
       </tbody>
     </table>
