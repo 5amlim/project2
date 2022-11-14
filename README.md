@@ -4,6 +4,13 @@
 
 A public website to share recipes and interact with creaters by leaving comments and ratings.
 
+## AAU
+
+- AAU, I wannt a page that displays all my recipes
+- AAU, I want to be able to delete and edit my recipes
+- AAU, I want to be able to delete and edit my comments/ratings
+- AAU, I want to be able to add multiple comments/ratings
+
 ## ERD
 
 ![ERD](/public/stylesheets/images/newerd1.png)
