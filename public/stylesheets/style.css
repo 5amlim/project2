@@ -7,24 +7,14 @@ a {
   color: #00B7FF;
 }
 
-/* th, td {
-  text-align: center;
-  padding: 5px;
-}
-
-td {
-  border: 1px dotted black;
-}
-
-th {
-  border: 1px solid black;
-  background-color: grey;
-} */
-
 .recipe-name {
   color:orange ;
 }
 
 .deletebtn {
   margin-top: 15px
+}
+
+.animate__fadeIn, .animate__animated{
+  --animation-duration: 5s;
 }
