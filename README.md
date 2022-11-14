@@ -1,5 +1,9 @@
 # Recipe Journal
 
+## Overview
+
+A public website to share recipes and interact with creaters by leaving comments and ratings.
+
 ## ERD
 
 ![ERD](/public/stylesheets/images/newerd1.png)
@@ -41,3 +45,47 @@ Users can view all their recipes in one page.
 - Google OAuth - User access delegation
 - Miro - Wireframes
 - Trello - Task board
+
+## RESTful CRUD Routes
+
+![RESTful Crud](/public/stylesheets/images/restfulroutes.png)
+
+## Screenshots
+
+#### Home Page (Public View)
+
+![Home Page](/public/stylesheets/images/homepage.png)
+
+#### Discover Recipes (Public View)
+
+![Discover Recipes](/public/stylesheets/images/discoverrecipes.png)
+
+#### Create Recipe (User View)
+
+![Create a Recipe](/public/stylesheets/images/createarecipe.png)
+
+#### User's Recipes (User View)
+
+![User's Recipes](/public/stylesheets/images/userrecipes.png)
+
+#### Show Page (User View)
+
+![Show Page](/public/stylesheets/images/showpage.png)
+
+#### Edit Rating (User View)
+
+![Show Page](/public/stylesheets/images/editrating.png)
+
+#### Edit Recipe (User View)
+
+![Show Page](/public/stylesheets/images/editrecipe.png)
+
+## Future Implementations
+
+- Add ability to upload pictures on recipes and comments
+- Group recipes by creater on the public page
+- Randomize popular recipes on homepage
+
+## Trello
+
+[Trello Link](https://trello.com/b/5hLx1GPm/recipe-journal)
