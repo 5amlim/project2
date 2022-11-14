@@ -13,7 +13,7 @@ A public website to share recipes and interact with creaters by leaving comments
 
 ## ERD
 
-![ERD](/public/stylesheets/images/newerd1.png)
+![ERD](/public/stylesheets/images/finalerd.png)
 <br><br>
 
 ## Wireframes
