@@ -1,15 +1,62 @@
 <%- include('./partials/userheader') %>
-
+<% if (user){ %>
 <body>
-  <p>Welcome, <%= user.name %>
-  </p>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <% if (user) { %>
-      <li><a href="/private">Private Page</a></li>
-      <li><a href="/logout">Log Out</a></li>
-      <% } else { %>
-        <li><a href="/auth/google">Log In</a></li>
-        <% } %>
-  </ul>
+  <h1>Welcome, <%= user.name %>
+  </h1>
+
 </body>
+
+<div class="card text-center">
+  <div class="card-header">
+    Feeling Inspired?
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">Discover Recipes</h3>
+    <p class="card-text">View delicious recipes created by RJ users</p>
+    <a  class="btn btn-primary" role="button" aria-pressed="true" href="/recipes">Sounds Good!</a>
+  </div>
+  <div class="card-footer text-muted">
+    Holidays are coming!
+  </div>
+</div>
+<br><br>
+<div class="card text-center">
+  <div class="card-header">
+    Share Your Recipes
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">Create Your Own Recipes!</h3>
+    <p class="card-text">Share your delicious recipes with the world!</p>
+    <a class="btn btn-primary" role="button" aria-pressed="true" href="/recipes/new">Create Recipe</a>
+  </div>
+  <div class="card-footer text-muted">
+    Sharing is Caring!
+  </div>
+</div>
+<% } else {%>
+  <div class="card text-center">
+    <div class="card-header">
+      Feeling Inspired?
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Discover Recipes</h3>
+      <p class="card-text">View delicious recipes created by RJ users</p>
+      <a  class="btn btn-primary" role="button" aria-pressed="true" href="/recipes">Sounds Good!</a>
+    </div>
+    <div class="card-footer text-muted">
+      Holidays are coming!
+    </div>
+  </div>
+  <br><br>
+<div class="card text-center">
+  <div class="card-header">
+    Want to share your recipe? Or rate the existing recipes?
+  </div>
+  <div class="card-body">
+    <a class="btn btn-primary" role="button" aria-pressed="true" href="/auth/google">Log In</a>
+  </div>
+  <div class="card-footer text-muted">
+    Sharing is Caring!
+  </div>
+</div>
+<%}%>

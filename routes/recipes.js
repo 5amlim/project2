@@ -5,9 +5,9 @@ const isLoggedIn = require("../config/auth");
 const recipesCtrl = require('../controllers/recipes')
 
 router.get('/', recipesCtrl.index);
-router.get('/new', recipesCtrl.new);
+router.get('/new', isLoggedIn, recipesCtrl.new);
 router.post('/', isLoggedIn, recipesCtrl.create);
-router.get('/:recipeId', recipesCtrl.show);
+router.get('/:recipeId', isLoggedIn, recipesCtrl.show);
 router.get('/:userId/all', isLoggedIn, recipesCtrl.viewAll);
 router.delete('/:id', isLoggedIn, recipesCtrl.delete);
 router.get('/:recipeId/edit', isLoggedIn, recipesCtrl.edit)

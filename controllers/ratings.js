@@ -3,6 +3,8 @@ const Recipe = require('../models/recipe');
 module.exports = {
     create,
     delete: deleteRating,
+    edit,
+    update,
 }
 
 //! recipeId
@@ -39,3 +41,34 @@ function deleteRating(req, res, next){
     })
 }
 
+function edit(req, res) {
+    Recipe.findOne({'ratings._id':req.params.ratingId})
+    .then(function (recipe) {
+        const rating = recipe.ratings.id(req.params.ratingId)
+    res.render("ratings/edit", {title:'Edit Comment', rating, recipe});
+    });
+}
+
+function update(req, res, next) {
+    Recipe.findOne({'ratings._id': req.params.ratingId})
+    .then(function(recipe){
+        const rating = recipe.ratings.id(req.params.ratingId)
+        console.log('🪲', recipe)
+        console.log('🪲', req.body.content)
+        console.log('🪲', req.body.rating)
+        console.log('😈', rating.content)
+        rating._id = req.params.ratingId
+        rating.content = req.body.content
+        rating.rating = req.body.rating
+        rating.user = req.user
+        rating.name = req.user.name
+        console.log('👾', rating)
+        rating.save()
+        recipe.save()
+    })
+    .then(function(){res.redirect(`/recipes/${req.params.recipeId}`);}
+    )
+    .catch(function (err) {
+        return next(err);
+      });
+}
